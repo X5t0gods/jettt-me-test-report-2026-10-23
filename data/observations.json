@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "target": "https://jettt.me/",
+  "primary_execution_date": "2026-10-23",
+  "compiled_on": "2026-10-24",
+  "timezone": "Asia/Singapore",
+  "publication": "public-redacted",
+  "source": "retrospective browser observations and explicitly unexecuted follow-up design",
+  "total": 7,
+  "observations": [
+    {
+      "id": "OBS-01",
+      "title": "关联规则结果上限与查找",
+      "observed": "展示500条而任务记录产出1151条，未见搜索或分页。",
+      "recommendation": "标明上限并提供搜索、分页与筛选总数。",
+      "evidence_ids": [
+        "EV-25"
+      ],
+      "status": "改进建议/待核实",
+      "test_case_ids": [
+        "TC-UX-001"
+      ]
+    },
+    {
+      "id": "OBS-02",
+      "title": "技术文案混入业务页面",
+      "observed": "算法库名、需求编号和数据库字段混入经营说明。",
+      "recommendation": "业务说明使用经营语言，将技术信息放在帮助/诊断页。",
+      "evidence_ids": [
+        "EV-17",
+        "EV-25"
+      ],
+      "status": "改进建议/待核实",
+      "test_case_ids": [
+        "TC-UX-002"
+      ]
+    },
+    {
+      "id": "OBS-03",
+      "title": "登录标签与键盘语义",
+      "observed": "字段标签关联不足，刷新验证码和忘记密码缺少可访问控件语义，autocomplete为off。",
+      "recommendation": "补齐标签、键盘操作及username/current-password语义。",
+      "evidence_ids": [
+        "EV-01"
+      ],
+      "status": "改进建议/待核实",
+      "test_case_ids": [
+        "TC-AUTH-005"
+      ]
+    },
+    {
+      "id": "OBS-04",
+      "title": "预填凭据与记住设备",
+      "observed": "登录页预填凭据且默认记住设备。页面包含演示数据标记。",
+      "recommendation": "明确演示用途，正式环境移除高权限预填并核对保存策略；不在公开仓库发布任何凭据。",
+      "evidence_ids": [
+        "EV-01"
+      ],
+      "status": "改进建议/待核实",
+      "test_case_ids": [
+        "TC-UX-003"
+      ]
+    },
+    {
+      "id": "OBS-05",
+      "title": "收银历史、退款、补打入口待核实",
+      "observed": "所查收银首页和交班页未见入口；未证明整站未实现。",
+      "recommendation": "核实功能及角色权限，为适用用户提供清晰入口。",
+      "evidence_ids": [
+        "EV-22",
+        "EV-24"
+      ],
+      "status": "改进建议/待核实",
+      "test_case_ids": [
+        "TC-POS-019"
+      ]
+    },
+    {
+      "id": "OBS-06",
+      "title": "供应商对账缺少下钻",
+      "observed": "只看到期初、增加、减少、期末汇总，未见组成记录。",
+      "recommendation": "增加采购、退货、付款明细核对入口。",
+      "evidence_ids": [
+        "EV-10"
+      ],
+      "status": "改进建议/待核实",
+      "test_case_ids": [
+        "TC-UX-004"
+      ]
+    },
+    {
+      "id": "OBS-07",
+      "title": "权限与读取失败反馈",
+      "observed": "无权限可能显示404；范围外采购详情提示后保留空表单和默认日期。",
+      "recommendation": "区分403式权限拒绝、404和读取失败，保留持久错误说明及返回入口。",
+      "evidence_ids": [
+        "EV-07",
+        "EV-19"
+      ],
+      "status": "改进建议/待核实",
+      "test_case_ids": [
+        "TC-UX-005"
+      ]
+    }
+  ]
+}
