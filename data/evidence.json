@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0",
+  "target": "https://jettt.me/",
+  "primary_execution_date": "2026-10-23",
+  "compiled_on": "2026-10-24",
+  "timezone": "Asia/Singapore",
+  "publication": "public-redacted",
+  "source": "retrospective browser observations and explicitly unexecuted follow-up design",
+  "total": 25,
+  "raw_screenshots_included": false,
+  "evidence": [
+    {
+      "id": "EV-01",
+      "date": "2026-10-23",
+      "title": "登录与窄屏布局",
+      "summary": "桌面登录可用；390px两栏挤压及验证码输入宽度0px；后台窄屏挤压。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-02",
+      "date": "2026-10-23",
+      "title": "五账号会话切换",
+      "summary": "已逐个建立管理员、店长、收银员、库管员及采购测试账号会话并核对页头。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-03",
+      "date": "2026-10-23",
+      "title": "日期与排行对照",
+      "summary": "总览当天为零，排行与近30天报表逐项一致，当天商品查询加载完成后为空。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-04",
+      "date": "2026-10-23",
+      "title": "范围差异",
+      "summary": "ALL与STORE的采购、库存、告警和同日期报表汇总不同。原业务汇总数值不公开。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-05",
+      "date": "2026-10-23",
+      "title": "商品查找及详情",
+      "summary": "列表名称查询成功，既有商品详情入口进入404。具体内部ID不公开。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-06",
+      "date": "2026-10-23",
+      "title": "价格表单读取",
+      "summary": "店长及实际兼任店长的采购测试账号可读取可编辑价格表单；均未保存。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-07",
+      "date": "2026-10-23",
+      "title": "采购角色与范围",
+      "summary": "库管员待审单仅详情；店长有审批入口；店长读取一个已知范围外详情被拒。单号、内部ID不公开。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-08",
+      "date": "2026-10-23",
+      "title": "采购草稿计价",
+      "summary": "逐键录入称重演示样例0.75公斤×3.80=2.85；未保存。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-09",
+      "date": "2026-10-23",
+      "title": "部分收货表单",
+      "summary": "演示单两行订购24、已收12、本次12；行额40.80和22.20，合计63.00；未入库。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-10",
+      "date": "2026-10-23",
+      "title": "供应商列表与对账",
+      "summary": "列表电话脱敏；抽查期初+增加−减少=期末，期末与列表相同；无下钻入口。名称、余额不公开。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-11",
+      "date": "2026-10-23",
+      "title": "库存复合状态与多行",
+      "summary": "负剩余天数仍标临期或仅缺货；告警徽标随列表变化；同SKU多行缺少身份字段。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-12",
+      "date": "2026-10-23",
+      "title": "商品行流水上下文",
+      "summary": "从商品行打开流水后条件为空并出现其他商品。全量业务条数不公开。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-13",
+      "date": "2026-10-23",
+      "title": "已审核盘点只读",
+      "summary": "盘点明细、差异和损益可读，数量字段禁用；未创建新盘点。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-14",
+      "date": "2026-10-23",
+      "title": "报损列表与表单",
+      "summary": "历史报损无明细入口；称重表单无基础单位；逐键0.500×3.8000=1.90；未提交。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-15",
+      "date": "2026-10-23",
+      "title": "会员展示",
+      "summary": "会员列表手机号脱敏，档案与消费/储值/积分标签可打开。任何会员身份与余额均不公开。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-16",
+      "date": "2026-10-23",
+      "title": "促销时间状态",
+      "summary": "9月已结束的演示活动在10月23日仍显示未开始。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-17",
+      "date": "2026-10-23",
+      "title": "补货数量与单位",
+      "summary": "演示样例18.2/20与8.6/10均建议1；称重单位写成件；本店仍有同名未区分建议。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-18",
+      "date": "2026-10-23",
+      "title": "权限树",
+      "summary": "管理员选择系统管理员和店长角色后均出现权限0项及permission_ids未返回的提示，树禁用。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-19",
+      "date": "2026-10-23",
+      "title": "页面授权反馈",
+      "summary": "店长系统用户管理被拒；库管员商品编辑与首页排行按钮进入404。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-20",
+      "date": "2026-10-23",
+      "title": "采购测试账号角色差异",
+      "summary": "提供清单为采购员，实际页头为店长/采购员，本人待审单有审核/驳回入口；未提交审批。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-21",
+      "date": "2026-10-24",
+      "title": "过期会话观察（未完成）",
+      "summary": "点击采购退货后回到登录；redirect重复包含登录页；未重新登录，不能判定业务页或目标恢复故障。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-22",
+      "date": "2026-10-23",
+      "title": "收银入口与取单空状态",
+      "summary": "收银员工作台可打开，取单列表为空；所查页面未见历史/退款/补打入口。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-23",
+      "date": "2026-10-23",
+      "title": "收银草稿与可访问性",
+      "summary": "特价、会员折扣、找零、小数改量和负数拒绝有明确观察；重量初录、名称查找、F4焦点与控件语义存在问题；未结算。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-24",
+      "date": "2026-10-23",
+      "title": "交班草稿",
+      "summary": "现金实点暂改为0后出现差异与说明，恢复原值；班次起始早于当天，未提交。现金汇总不公开。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    },
+    {
+      "id": "EV-25",
+      "date": "2026-10-23",
+      "title": "关联分析展示",
+      "summary": "页面显示500条规则，任务记录产出1151条；未见搜索/分页；未重跑模型。",
+      "evidence_type": "脱敏现场观察摘要",
+      "raw_screenshot_published": false
+    }
+  ]
+}
