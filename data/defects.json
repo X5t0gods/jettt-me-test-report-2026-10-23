@@ -1,0 +1,589 @@
+{
+  "schema_version": "1.0",
+  "target": "https://jettt.me/",
+  "primary_execution_date": "2026-10-23",
+  "compiled_on": "2026-10-24",
+  "timezone": "Asia/Singapore",
+  "publication": "public-redacted",
+  "source": "retrospective browser observations and explicitly unexecuted follow-up design",
+  "total": 18,
+  "priority_counts": {
+    "P1": 8,
+    "P2": 10
+  },
+  "defects": [
+    {
+      "id": "P1-01",
+      "title": "手机端登录和后台布局挤压",
+      "module": "响应式布局",
+      "priority": "P1",
+      "severity": "主要",
+      "state": "待修复",
+      "roles": [
+        "任意登录用户",
+        "后台用户"
+      ],
+      "route": "/#/login；后台总览及采购页",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "用390×844视口打开登录页",
+        "观察验证码输入区",
+        "登录后观察窄屏后台侧栏、页头及主内容"
+      ],
+      "expected": "登录字段可见且有可用宽度，后台导航与主内容适配窄屏",
+      "actual": "两栏登录持续挤压，验证码输入元素实测宽度为0px；后台主内容明显挤压",
+      "impact": "窄屏登录和关键后台操作难以完成",
+      "recommendation": "小屏登录单栏、侧栏抽屉化，卡片自适应，表格提供明确滚动区域",
+      "acceptance": "390px下可完成输入；侧栏不挤占全部主内容；关键操作可达",
+      "evidence_ids": [
+        "EV-01"
+      ],
+      "test_case_ids": [
+        "TC-AUTH-002",
+        "TC-DASH-002"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P1-02",
+      "title": "今日商品销售排行使用近30天数据",
+      "module": "经营总览",
+      "priority": "P1",
+      "severity": "主要",
+      "state": "待修复",
+      "roles": [
+        "管理员"
+      ],
+      "route": "/#/dashboard → /#/report/goods",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "读取今日指标与商品排行",
+        "进入近30天商品报表对照",
+        "将日期改为检查当天查询并等待加载"
+      ],
+      "expected": "今日指标、排行、明细的日期与门店范围一致",
+      "actual": "当天指标为0，所谓今日排行却与近30天报表逐项一致；当天商品报表为空",
+      "impact": "可能误导当日经营判断",
+      "recommendation": "统一查询区间与范围；若本意近30天则改标题并在跳转中保留条件",
+      "acceptance": "同日期、门店下汇总、排行和明细可核对",
+      "evidence_ids": [
+        "EV-03"
+      ],
+      "test_case_ids": [
+        "TC-DASH-001"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P1-03",
+      "title": "商品详情入口进入404",
+      "module": "商品管理",
+      "priority": "P1",
+      "severity": "主要",
+      "state": "待修复",
+      "roles": [
+        "管理员"
+      ],
+      "route": "/#/product → /#/product/detail/:id",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "搜索既有商品",
+        "点击详情",
+        "观察地址与页面"
+      ],
+      "expected": "打开当前商品只读详情",
+      "actual": "进入商品详情地址后显示404",
+      "impact": "商品信息查看链路中断",
+      "recommendation": "补齐路由与页面，或在不可用时移除入口并说明",
+      "acceptance": "详情可打开、返回后保留查询条件",
+      "evidence_ids": [
+        "EV-05"
+      ],
+      "test_case_ids": [
+        "TC-PROD-002"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P1-04",
+      "title": "角色功能权限不可读取或编辑",
+      "module": "角色权限",
+      "priority": "P1",
+      "severity": "主要",
+      "state": "待修复",
+      "roles": [
+        "管理员"
+      ],
+      "route": "/#/system/role",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "进入角色与权限",
+        "分别选择系统管理员和店长角色",
+        "读取已选权限与禁用状态"
+      ],
+      "expected": "显示各角色真实功能权限，并允许授权管理员配置",
+      "actual": "显示0项权限以及permission_ids未返回的提示；功能权限树全部禁用",
+      "impact": "无法从界面核对或维护真实授权范围",
+      "recommendation": "返回当前权限集合，支持授权、撤销与保存后的重新读取",
+      "acceptance": "不同角色真实权限可读，合法保存后刷新一致",
+      "evidence_ids": [
+        "EV-18"
+      ],
+      "test_case_ids": [
+        "TC-RBAC-001"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P1-05",
+      "title": "过期状态被临期或缺货覆盖，收银加购无警示",
+      "module": "保质期与收银",
+      "priority": "P1",
+      "severity": "主要",
+      "state": "待修复",
+      "roles": [
+        "管理员",
+        "店长",
+        "收银员"
+      ],
+      "route": "/#/inventory；/#/pos",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "查看剩余天数为负的商品",
+        "筛选缺货并观察同时过期的行",
+        "收银台按该商品编码加购后观察并删除测试行"
+      ],
+      "expected": "已过期独立标示；缺货和过期分别展示；加购按业务规则警示或阻止",
+      "actual": "负剩余天数仍标临期；部分仅标缺货；加购未见过期提示或拦截",
+      "impact": "过期商品识别和处置不充分；最终销售拦截仍需另测",
+      "recommendation": "分别计算已过期/临期及库存水位，明确过期销售、促销和出库规则",
+      "acceptance": "过期可筛选；复合状态同时显示；在隔离环境验证销售拦截",
+      "evidence_ids": [
+        "EV-11",
+        "EV-23"
+      ],
+      "test_case_ids": [
+        "TC-INV-001",
+        "TC-INV-002",
+        "TC-POS-015"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P1-06",
+      "title": "称重补货建议数量和单位不准确",
+      "module": "补货建议与销量",
+      "priority": "P1",
+      "severity": "主要",
+      "state": "待修复",
+      "roles": [
+        "管理员",
+        "采购测试账号"
+      ],
+      "route": "/#/bi/forecast；/#/dashboard",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "读取库存18.2、安全库存20、建议1的演示行",
+        "核对8.6与10的样例",
+        "对照基础单位与建议/销量文案"
+      ],
+      "expected": "同一单位下建议量足以达到声明的目标，单位随商品显示",
+      "actual": "补后仍低于安全库存；斤/公斤的称重商品被写成件",
+      "impact": "补货不足或采购数量理解错误",
+      "recommendation": "按基础单位、计量精度和采购包装换算计算；按件商品需要时向上取整",
+      "acceptance": "目标与算法说明明确；建议数量和单位在库存、采购、报表间一致",
+      "evidence_ids": [
+        "EV-17"
+      ],
+      "test_case_ids": [
+        "TC-BI-001",
+        "TC-BI-002"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P1-07",
+      "title": "称重商品首次加购直接默认1斤",
+      "module": "收银",
+      "priority": "P1",
+      "severity": "主要",
+      "state": "待修复",
+      "roles": [
+        "收银员"
+      ],
+      "route": "/#/pos",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "输入既有称重商品编码",
+        "回车",
+        "观察是否先确认重量"
+      ],
+      "expected": "先输入/读取重量并确认，再形成购物车金额",
+      "actual": "未出现重量确认，直接按1斤计入购物车；手动小数改量可正确计价",
+      "impact": "遗漏修改时可能按默认重量收费",
+      "recommendation": "首次加购要求重量确认；支持取消且不新增行；明确数量与价格单位",
+      "acceptance": "编码和实际扫码路径均验证重量确认，非称重商品保持整数规则",
+      "evidence_ids": [
+        "EV-23"
+      ],
+      "test_case_ids": [
+        "TC-POS-003"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P1-08",
+      "title": "采购测试账号叠加店长角色，与岗位清单不符",
+      "module": "角色配置",
+      "priority": "P1",
+      "severity": "待业务确认",
+      "state": "待业务确认",
+      "roles": [
+        "采购测试账号"
+      ],
+      "route": "登录身份；/#/purchase；/#/product/edit/:id",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "按仅采购员的提供清单登录",
+        "核对页头实际角色",
+        "查看本人待审单按钮与商品价格表单"
+      ],
+      "expected": "实际角色与岗位清单一致；兼任和制单人自审规则明确",
+      "actual": "实际为店长/采购员；本人单据出现审核/驳回入口且能读取可编辑价格表单；未提交自审或调价",
+      "impact": "岗位职责范围扩大，纯采购员隔离无法据此验证",
+      "recommendation": "由负责人核对是否有意兼任；确认自审规则并在前后端执行",
+      "acceptance": "清单与角色一致；提供纯采购员测试身份；用隔离单据验证自审限制",
+      "evidence_ids": [
+        "EV-20",
+        "EV-06"
+      ],
+      "test_case_ids": [
+        "TC-RBAC-005"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-01",
+      "title": "库存告警徽标未明确统计范围",
+      "module": "库存",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "管理员"
+      ],
+      "route": "/#/inventory",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "读取默认页徽标",
+        "切换筛选",
+        "对照总览全局数量"
+      ],
+      "expected": "明确区分全局、筛选结果和当前页统计",
+      "actual": "徽标随当前列表变化，未标明范围",
+      "impact": "容易把当前页数量当作全局告警",
+      "recommendation": "独立聚合全局告警，或标注当前页/筛选结果",
+      "acceptance": "翻页和筛选后可明确识别统计范围",
+      "evidence_ids": [
+        "EV-11"
+      ],
+      "test_case_ids": [
+        "TC-INV-003"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-02",
+      "title": "多行库存及同名补货建议缺少区分维度",
+      "module": "库存与补货",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "管理员",
+        "采购测试账号"
+      ],
+      "route": "/#/inventory；/#/bi/forecast",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "定位同SKU多行或同名补货行",
+        "比较库存、剩余天数或建议量",
+        "寻找门店、批次、编码、规格与单位"
+      ],
+      "expected": "每行有足够信息唯一定位业务对象",
+      "actual": "多行数值不同，但缺少门店/仓库/批次或商品编码与单位",
+      "impact": "难以判断归属、合并和采购目标；不等于数据库重复",
+      "recommendation": "分层展示商品汇总与批次明细，补齐身份字段和合并规则",
+      "acceptance": "同名/同SKU行可直接区分和追溯",
+      "evidence_ids": [
+        "EV-11",
+        "EV-17"
+      ],
+      "test_case_ids": [
+        "TC-INV-004",
+        "TC-BI-003"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-03",
+      "title": "商品行流水入口未带入商品条件",
+      "module": "库存流水",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "管理员"
+      ],
+      "route": "/#/inventory → /#/inventory/flow",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "从具体商品行点击流水",
+        "读取筛选条件",
+        "核对首批结果"
+      ],
+      "expected": "默认只显示当前商品并保留上下文",
+      "actual": "条件为空，返回全量流水及其他商品",
+      "impact": "定位库存变动需要重新筛选",
+      "recommendation": "传递稳定商品标识、自动查询并保留返回条件",
+      "acceptance": "行内入口只显示对应商品，可明确切换全部",
+      "evidence_ids": [
+        "EV-12"
+      ],
+      "test_case_ids": [
+        "TC-INV-005"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-04",
+      "title": "促销状态与活动日期冲突",
+      "module": "促销",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "管理员",
+        "店长"
+      ],
+      "route": "/#/promotion",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "在2026-10-23读取一项9月已结束的演示活动",
+        "比较日期、状态和启用操作"
+      ],
+      "expected": "时间状态与启用状态分别准确展示",
+      "actual": "已结束活动仍显示未开始",
+      "impact": "影响活动维护与当前生效规则理解",
+      "recommendation": "分别计算启用、开始、结束及星期/时段状态",
+      "acceptance": "过去、未来、停用和窗口外活动状态明确",
+      "evidence_ids": [
+        "EV-16"
+      ],
+      "test_case_ids": [
+        "TC-PROMO-001"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-05",
+      "title": "收银名称搜索与提示不一致",
+      "module": "收银",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "收银员"
+      ],
+      "route": "/#/pos",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "读取支持名称的输入提示",
+        "输入已存在完整商品名回车",
+        "用编码定位同一商品对照"
+      ],
+      "expected": "按名称检索或提供候选",
+      "actual": "按编码报未找到，编码输入则可加入",
+      "impact": "收银员反复尝试无效查找",
+      "recommendation": "实现名称候选检索，或修改只支持编码/条码的提示",
+      "acceptance": "名称、编码和条码行为符合输入框说明",
+      "evidence_ids": [
+        "EV-23"
+      ],
+      "test_case_ids": [
+        "TC-POS-006"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-06",
+      "title": "F4会员识别未转移输入焦点",
+      "module": "收银",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "收银员"
+      ],
+      "route": "/#/pos",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "聚焦商品输入",
+        "按F4",
+        "观察展开状态和焦点"
+      ],
+      "expected": "焦点转到会员查询框，完成后返回商品框",
+      "actual": "会员查询已展开，焦点仍停在商品输入",
+      "impact": "随后输入会员号码可能被当作商品查询",
+      "recommendation": "展开后聚焦，支持回车及选择/取消后的焦点恢复",
+      "acceptance": "仅用键盘可完成会员识别，不触发商品查找",
+      "evidence_ids": [
+        "EV-23"
+      ],
+      "test_case_ids": [
+        "TC-POS-007"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-07",
+      "title": "付款方式与数量控件缺少可访问语义",
+      "module": "收银",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "收银员"
+      ],
+      "route": "/#/pos",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "读取付款方式角色与tabIndex",
+        "读取数量增减按钮可访问名称"
+      ],
+      "expected": "付款选项可键盘聚焦并暴露选中状态，按钮有区分名称",
+      "actual": "方式为非聚焦普通容器，无单选组；增减按钮无可访问名称",
+      "impact": "键盘与读屏操作困难",
+      "recommendation": "使用单选组/按钮并补齐状态、键盘操作和商品相关名称",
+      "acceptance": "键盘可切换支付方式，读屏可辨别数量操作对象",
+      "evidence_ids": [
+        "EV-23"
+      ],
+      "test_case_ids": [
+        "TC-POS-010",
+        "TC-POS-011"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-08",
+      "title": "库管员可见按钮与路由权限不同步",
+      "module": "角色入口",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "库管员"
+      ],
+      "route": "/#/dashboard → /#/report/goods；/#/product → /#/product/edit/:id",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "点击首页排行查看全部",
+        "返回商品列表点击编辑",
+        "核对路由结果并与店长可读页对照"
+      ],
+      "expected": "无权限按钮隐藏/禁用并解释，或能进入授权页面",
+      "actual": "两个可见入口均进入404；店长同商品编辑页可打开",
+      "impact": "造成死路，易误判页面缺失",
+      "recommendation": "菜单、按钮、路由统一授权判断，区分权限不足和404",
+      "acceptance": "库管员可点入口均可达，权限反馈明确",
+      "evidence_ids": [
+        "EV-19"
+      ],
+      "test_case_ids": [
+        "TC-RBAC-004",
+        "TC-RBAC-006"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-09",
+      "title": "历史报损缺少商品明细入口",
+      "module": "报损",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "库管员"
+      ],
+      "route": "/#/inventory/loss",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "读取历史报损列表",
+        "点击既有单号",
+        "查找展开或详情操作"
+      ],
+      "expected": "可追溯商品、数量、单位、成本与流水",
+      "actual": "仅显示商品数、金额等汇总；单号无明细响应，行内无链接或按钮",
+      "impact": "无法从历史记录核对实际报损内容",
+      "recommendation": "增加只读详情及单号/日期/商品/类型查询",
+      "acceptance": "历史单据可按明细核对金额和库存变化",
+      "evidence_ids": [
+        "EV-14"
+      ],
+      "test_case_ids": [
+        "TC-INV-008"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    },
+    {
+      "id": "P2-10",
+      "title": "称重报损缺少计量单位说明",
+      "module": "报损",
+      "priority": "P2",
+      "severity": "一般",
+      "state": "待修复",
+      "roles": [
+        "库管员",
+        "采购测试账号"
+      ],
+      "route": "/#/inventory/loss",
+      "preconditions": "使用经授权的既有演示数据；按用例中的测试角色和夹具准备；本轮不提交业务写入。",
+      "steps": [
+        "打开新建表单",
+        "选择基础单位为公斤的称重演示商品",
+        "核对数量与成本字段后取消"
+      ],
+      "expected": "数量显示公斤/斤，成本显示元/相应单位",
+      "actual": "数量0.500、成本3.8000均无基础单位标签",
+      "impact": "容易混淆斤、公斤和件，产生录入风险",
+      "recommendation": "选择项显示编码、规格和库存；数量与成本旁固定显示单位",
+      "acceptance": "不跳转其他页面即可确认扣减数量及单位成本含义",
+      "evidence_ids": [
+        "EV-14"
+      ],
+      "test_case_ids": [
+        "TC-INV-009"
+      ],
+      "reported_on": "2026-10-23",
+      "root_cause": "未读取源代码，未验证实现根因。"
+    }
+  ]
+}
