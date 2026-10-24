@@ -1,0 +1,9 @@
+# Keep credentials and raw captured business data out of this public documentation repository.
+.env
+.env.*
+credentials*
+private/
+raw-evidence/
+work/
+*.har
+*.log
